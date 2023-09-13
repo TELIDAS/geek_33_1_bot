@@ -1,2 +1,4 @@
 START_TEXT = "Hello *{username}!* 😎\n" \
-             "Im 33_1_bot, right now im developing"
+             "Im your complex bot, nice to meet you\n" \
+             "U can press Start Questionnaire button " \
+             "to answer a few questions"

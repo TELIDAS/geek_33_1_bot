@@ -5,7 +5,11 @@ from aiogram import types, Dispatcher
 from config import bot
 from const import START_TEXT, PROFILE_CAPTION_TEXT
 from database.sql_commands import Database
-from keyboards.inline_buttons import question_first_keyboard, like_dislike_keyboard
+from keyboards.inline_buttons import (
+    question_first_keyboard,
+    like_dislike_keyboard,
+    edit_delete_keyboard, register_keyboard,
+)
 import random
 
 
@@ -20,11 +24,6 @@ async def start_questionnaire_call(call: types.CallbackQuery):
 
 async def male_answer_call(call: types.CallbackQuery):
     print(call)
-    # Database().sql_insert_answer_command(
-    #     male,
-    #     call.from_user.id,
-    #     call.from_user.username
-    # )
     await bot.send_message(
         chat_id=call.message.chat.id,
         text="Yes you are Male ?",
@@ -44,18 +43,26 @@ async def my_profile_call(call: types.CallbackQuery):
     user = Database().sql_select_user_form_command(
         telegram_id=call.from_user.id
     )
-
-    with open(user[0]["photo"], 'rb') as photo:
-        await bot.send_photo(
-            chat_id=call.message.chat.id,
-            photo=photo,
-            caption=PROFILE_CAPTION_TEXT.format(
-                nickname=user[0]['nickname'],
-                bio=user[0]['bio'],
-                age=user[0]['age'],
-                occupation=user[0]['occupation'],
-                married=user[0]['married'],
+    if user:
+        with open(user[0]["photo"], 'rb') as photo:
+            await bot.send_photo(
+                chat_id=call.message.chat.id,
+                photo=photo,
+                caption=PROFILE_CAPTION_TEXT.format(
+                    nickname=user[0]['nickname'],
+                    bio=user[0]['bio'],
+                    age=user[0]['age'],
+                    occupation=user[0]['occupation'],
+                    married=user[0]['married'],
+                ),
+                reply_markup=await edit_delete_keyboard()
             )
+    else:
+        await bot.send_message(
+            chat_id=call.from_user.id,
+            text="Oh you have not registered in our system\n"
+                 "Do you want to register ? 😈",
+            reply_markup=await register_keyboard()
         )
 
 

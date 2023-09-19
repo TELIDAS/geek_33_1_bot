@@ -62,3 +62,11 @@ SELECT * FROM user_form
 """
 
 INSERT_LIKE_QUERY = """INSERT INTO like_user_form VALUES (?,?,?)"""
+
+UPDATE_USER_FORM_QUERY = """
+UPDATE user_form SET NICKNAME = ?, BIO = ?, AGE = ?, OCCUPATION = ?, MARRIED = ?, PHOTO = ?  WHERE TELEGRAM_ID = ?
+"""
+
+DELETE_USER_FORM_QUERY = """
+DELETE FROM user_form WHERE TELEGRAM_ID = ?
+"""

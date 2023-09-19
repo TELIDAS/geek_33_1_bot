@@ -18,12 +18,19 @@ async def start_keyboard():
         "View User Forms",
         callback_data="random_profile"
     )
+    profile_button = InlineKeyboardButton(
+        "My Profile",
+        callback_data="my_profile"
+    )
+
     markup.add(
         questionnaire_button
     ).add(
         form_start_button
     ).add(
         random_profiles_button
+    ).add(
+        profile_button
     )
     return markup
 
@@ -73,5 +80,35 @@ async def like_dislike_keyboard(telegram_id):
         like_button
     ).add(
         dislike_button
+    )
+    return markup
+
+
+async def edit_delete_keyboard():
+    markup = InlineKeyboardMarkup()
+    update_button = InlineKeyboardButton(
+        "Edit ✍🏻",
+        callback_data="edit_profile"
+    )
+    delete_button = InlineKeyboardButton(
+        "Delete ❌",
+        callback_data="delete_profile"
+    )
+    markup.add(
+        update_button
+    ).add(
+        delete_button
+    )
+    return markup
+
+
+async def register_keyboard():
+    markup = InlineKeyboardMarkup()
+    form_start_button = InlineKeyboardButton(
+        "Registration 🤟🏻",
+        callback_data="fsm_start_form"
+    )
+    markup.add(
+        form_start_button
     )
     return markup

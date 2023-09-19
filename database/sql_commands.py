@@ -94,3 +94,18 @@ class Database:
             (None, liker, liked,)
         )
         self.connection.commit()
+
+    def sql_update_user_form_command(self, telegram_id, nickname, bio,
+                                     age, occupation, married, photo):
+        self.cursor.execute(
+            sql_queries.UPDATE_USER_FORM_QUERY,
+            (nickname, bio, age, occupation, married, photo, telegram_id,)
+        )
+        self.connection.commit()
+
+    def sql_delete_user_form_command(self, telegram_id):
+        self.cursor.execute(
+            sql_queries.DELETE_USER_FORM_QUERY,
+            (telegram_id,)
+        )
+        self.connection.commit()

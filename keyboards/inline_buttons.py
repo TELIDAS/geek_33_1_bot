@@ -22,7 +22,10 @@ async def start_keyboard():
         "My Profile",
         callback_data="my_profile"
     )
-
+    referral_button = InlineKeyboardButton(
+        "Referral Menu",
+        callback_data="referral_menu"
+    )
     markup.add(
         questionnaire_button
     ).add(
@@ -31,6 +34,8 @@ async def start_keyboard():
         random_profiles_button
     ).add(
         profile_button
+    ).add(
+        referral_button
     )
     return markup
 
@@ -110,5 +115,23 @@ async def register_keyboard():
     )
     markup.add(
         form_start_button
+    )
+    return markup
+
+
+async def reference_menu_keyboard():
+    markup = InlineKeyboardMarkup()
+    reference_link_button = InlineKeyboardButton(
+        "Generate Link 🔗",
+        callback_data="reference_link"
+    )
+    reference_list_button = InlineKeyboardButton(
+        "Referral List 🗒️",
+        callback_data="reference_list"
+    )
+    markup.add(
+        reference_link_button
+    ).add(
+        reference_list_button
     )
     return markup

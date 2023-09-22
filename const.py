@@ -8,3 +8,7 @@ PROFILE_CAPTION_TEXT = "Nickname: {nickname}\n" \
                        "Age: {age}\n" \
                        "Occupation: {occupation}\n" \
                        "Married: {married}\n"
+
+REFERENCE_MENU_TEXT = "Мы запускаем реферальную программу, успей поучаствовать\n" \
+                      "За каждого приглашенного 100 баллов в кошелек\n" \
+                      "Чтобы получить ссылку нажми генерация ссылки"

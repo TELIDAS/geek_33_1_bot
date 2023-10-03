@@ -20,3 +20,6 @@ headers = {
 
 response = requests.request("GET", url, headers=headers, data=payload)
 
+print(response)
+print(response)
+print(response)
